@@ -1,7 +1,7 @@
-Redux Easy Boilerplate
+MozApoy Web Frontend
 =========================
 
-![http://anorudes.github.io/redux-easy-boilerplate/](https://raw.githubusercontent.com/anorudes/redux-easy-boilerplate/569905d1aabc33ce385b1895984141764d364b54/gh/browser.png)
+Based on https://github.com/anorudes/redux-easy-boilerplate
 
 ## Table of Contents
 
@@ -27,8 +27,8 @@ Redux Easy Boilerplate
 
 ## Installation
 ```
-$ git clone https://github.com/anorudes/redux-easy-boilerplate.git
-$ cd redux-easy-boilerplate
+$ git clone <this repo url>
+$ cd MozApoy-web
 $ npm install
 ```
 
@@ -94,6 +94,3 @@ since react-router is keeping track of the navigation (e.g this can be done with
 ```
 $ npm test
 ```
-## TODO
-1. [ ] Write more tests!
-2. [ ] Server-side rendering
