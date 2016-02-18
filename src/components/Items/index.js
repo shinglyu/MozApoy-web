@@ -30,16 +30,11 @@ export class Items extends Component {
           items.map((item, index) =>
             <div className="checkbox" key={index}>
               <label>
-                <input type="checkbox"
-                  defaultChecked={item.done}
-                />
-                  {`${item.text}`}
-                <span className="remove"
+                <span className="glyphicon glyphicon-remove"
                   data-index={index}
                   onClick={this.onDelete}
-                >
-                  x
-                </span>
+                />
+                &nbsp;&nbsp;&nbsp;{`${item.text}`}
               </label>
             </div>
           )

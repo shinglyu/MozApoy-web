@@ -41,7 +41,7 @@ export class Result extends Component {
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
               <h1>
-                Redux
+                Your Smoke Test Suite
               </h1>
             </div>
           </div>
@@ -49,15 +49,15 @@ export class Result extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
-              <h2>
-                Boilerplate contains:
-              </h2>
-              <Items {...this.props} />
-            </div>
+              <p>
+                Here is a smoke test suite to get your QA activity up and running. You can remove unwanted tests and save it as a Excel file.
+              </p>
+              <button className="btn btn-success"> 
+              <span className="glyphicon glyphicon-download-alt"/>
 
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-              <AddItem {...this.props} />
+              &nbsp;Download as Excel CSV
+              </button>
+              <Items {...this.props} />
             </div>
           </div>
         </div>
