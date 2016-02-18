@@ -11,8 +11,8 @@ import { AddItem } from 'components/AddItem';
 import * as actionCreators from 'actions/items';
 
 const metaData = {
-  title: 'Redux test',
-  description: 'Start you project easy and fast with modern tools.',
+  title: 'MozApoy - Result',
+  description: 'Your smoke test suite',
   canonical: 'http://example.com/path/to/page',
   meta: {
     charset: 'utf-8',

@@ -12,8 +12,8 @@ import { StartForm } from 'components/StartForm';
 import * as actionCreators from 'actions/items';
 
 const metaData = {
-  title: 'Redux test',
-  description: 'Start you project easy and fast with modern tools.',
+  title: 'MozApoy - Getting Started',
+  description: 'Getting started',
   canonical: 'http://example.com/path/to/page',
   meta: {
     charset: 'utf-8',
