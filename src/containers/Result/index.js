@@ -31,7 +31,33 @@ export class Result extends Component {
     super(props);
   }
 
+  /*
+   * state = {
+      csv_url: null
+  }
+  */
+
+  generateCsvUrl() {
+      let text = this.props.items.map(obj => obj.text).join('\n');
+      console.log(text)
+
+      let data = new Blob([text], {type: 'text/csv'});
+
+          // If we are replacing a previously generated file we need to
+      // manually revoke the object URL to avoid memory leaks.
+      // TODO: call revokeObjectURL when needed
+      /*
+      if (this.state.csv_url !== null) {
+        window.URL.revokeObjectURL(this.state.csv_url);
+      }
+      */
+
+      //this.setState({csv_url: window.URL.createObjectURL(data)});
+      return window.URL.createObjectURL(data);
+  }
+
   render() {
+    let csv_url = this.generateCsvUrl();
     return (
       <section>
         <DocumentMeta {...metaData} />
@@ -52,11 +78,11 @@ export class Result extends Component {
               <p>
                 Here is a smoke test suite to get your QA activity up and running. You can remove unwanted tests and save it as a Excel file.
               </p>
-              <button className="btn btn-success"> 
+              <a download="mozapoy_test_suite.csv" href={csv_url} className="btn btn-success">
               <span className="glyphicon glyphicon-download-alt"/>
 
               &nbsp;Download as Excel CSV
-              </button>
+              </a>
               <Items {...this.props} />
             </div>
           </div>
