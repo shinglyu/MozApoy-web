@@ -31,11 +31,9 @@ export class Result extends Component {
     super(props);
   }
 
-  /*
-   * state = {
-      csv_url: null
+  state = {
+      total_time: 60
   }
-  */
 
   generateCsvUrl() {
       let text = this.props.items.map(obj => obj.text).join('\n');
@@ -54,6 +52,12 @@ export class Result extends Component {
 
       //this.setState({csv_url: window.URL.createObjectURL(data)});
       return window.URL.createObjectURL(data);
+  }
+  
+  updateTotalTime(evt) {
+    this.setState({
+      total_time:evt.target.value
+    });
   }
 
   render() {
@@ -80,9 +84,11 @@ export class Result extends Component {
               </p>
               <a download="mozapoy_test_suite.csv" href={csv_url} className="btn btn-success">
               <span className="glyphicon glyphicon-download-alt"/>
-
               &nbsp;Download as Excel CSV
               </a>
+              <hr/>
+              <input type="range" min="30" max="180" step="30" defaultValue="60" onChange={this.updateTotalTime.bind(this)}/>
+              <p>Estimated Time: {this.state.total_time} min</p>
               <Items {...this.props} />
             </div>
           </div>
