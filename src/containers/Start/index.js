@@ -28,7 +28,8 @@ function onSubmit(data) {
   //TODO: do AJAX here
   //TODO: get job id
   let id = '12345';
-  window.open("/#/Result/?=" + id);
+  //window.open("/#/Result/?=" + id);
+  window.location = window.location.protocol + "//" + window.location.host + window.location.pathname + "/#/Result?id=" + id;
 }
 
 @connect(
