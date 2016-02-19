@@ -100,8 +100,11 @@ export class Result extends Component {
               &nbsp;Download as Excel CSV
               </a>
               <hr/>
+              <p>
+                Adjust the slider to set your test run duration
+              </p>
               <input type="range" min="30" max="180" step="30" defaultValue="60" onChange={this.updateTotalTime.bind(this)}/>
-              <p>Estimated Time: {this.props.total_time} min {this.props.show_level}</p>
+              <p>Estimated Time: {this.props.total_time} min </p>
               <Items {...this.props} />
             </div>
           </div>

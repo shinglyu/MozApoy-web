@@ -23,10 +23,18 @@ const metaData = {
   },
 };
 
+function onSubmit(data) {
+  console.log(data);
+  //TODO: do AJAX here
+  //TODO: get job id
+  let id = '12345';
+  window.open("/#/Result/?=" + id);
+}
+
 @connect(
   state => state.items, //mapStateToProps
   //dispatch => bindActionCreators(actionCreators, dispatch) //mapDispatchToProps
-  dispatch => ({onSubmit: (data) => (console.log(data))}),
+  dispatch => ({onSubmit: onSubmit}),
 )
 export class Start extends Component {
   constructor(props) {
