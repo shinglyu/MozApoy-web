@@ -22,8 +22,18 @@ const metaData = {
   },
 };
 
+function mapStateToProps(state){
+  let show_level = state.items.total_time / 30;
+  return {
+    total_time: state.items.total_time,
+    show_level: show_level,
+    items: state.items.items.filter((item) => item.priority <= show_level)
+  }
+}
+
 @connect(
-  state => state.items,
+  //state => state.items,
+  mapStateToProps,
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
 export class Result extends Component {
@@ -55,9 +65,12 @@ export class Result extends Component {
   }
   
   updateTotalTime(evt) {
+    this.props.setTotalTime(evt.target.value)
+    /*
     this.setState({
       total_time:evt.target.value
     });
+    */
   }
 
   render() {
@@ -88,7 +101,7 @@ export class Result extends Component {
               </a>
               <hr/>
               <input type="range" min="30" max="180" step="30" defaultValue="60" onChange={this.updateTotalTime.bind(this)}/>
-              <p>Estimated Time: {this.state.total_time} min</p>
+              <p>Estimated Time: {this.props.total_time} min {this.props.show_level}</p>
               <Items {...this.props} />
             </div>
           </div>

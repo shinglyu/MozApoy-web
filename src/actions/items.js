@@ -11,3 +11,10 @@ export function delItem(index) {
     index,
   };
 }
+
+export function setTotalTime(time) {
+  return {
+    type: 'SET_TOTAL_TIME',
+    time,
+  };
+}
