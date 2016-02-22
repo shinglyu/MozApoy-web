@@ -1,19 +1,19 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example with External JSX</title>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>MozApoy</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="dist/bundle.css"></style>
-  <link rel="shortcut icon" type="image/png" href="./src/images/favicon.png"/>
-</head>
+  <body>
+    <h1>Basic Example with External JSX</h1>
+    <div id="container">
+    <script src="../../build/react.js"></script>
+    <script src="../../build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
 
-<body>
-  <div id="root"></div>
-</body>
-
-<script src="dist/bundle.js"></script>
-<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
-
+    <script type="text/babel" src="js/form.js"></script>
+    <script type="text/babel" src="js/result.js"></script>
+    <script type="text/babel" src="js/index.js"></script>
+  </body>
 </html>
