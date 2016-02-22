@@ -60,14 +60,36 @@ var Result = React.createClass({
     return testcases.filter(function(tc){return tc.priority <= priority});
   },
 
+  generateCsvUrl: function(testcases) {
+      let text = testcases.map(obj => obj.text).join('\n');
+      //console.log(text)
+
+      let data = new Blob([text], {type: 'text/csv'});
+
+          // If we are replacing a previously generated file we need to
+      // manually revoke the object URL to avoid memory leaks.
+      // TODO: call revokeObjectURL when needed
+      /*
+      if (this.state.csv_url !== null) {
+        window.URL.revokeObjectURL(this.state.csv_url);
+      }
+      */
+
+      //this.setState({csv_url: window.URL.createObjectURL(data)});
+      return window.URL.createObjectURL(data);
+  },
+
   render: function() {
+    var shownTestcases = this.filterTestcaseByTotalTime(mockTestCaseData, this.state.totalTime);
     return (
       <div>
         <p> You can use the slider to custmize the desired execution time.</p>
         <input type="range" min="30" max="120" step="30" defaultValue="60" 
                onChange={function(evt){this.setState({totalTime: evt.target.value})}.bind(this)}/>
         <label>Estimated Time: {this.state.totalTime} min</label>
-        <Table testcases={this.filterTestcaseByTotalTime(mockTestCaseData,this.state.totalTime )} />
+        <br />
+        <a download="mozapoy_test_suite.csv" href={this.generateCsvUrl(shownTestcases)} >Download as Excel CSV</a>
+        <Table testcases={shownTestcases} />
       </div>
     )
   }
