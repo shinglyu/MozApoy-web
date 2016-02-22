@@ -24,7 +24,6 @@ var mockTestCaseData = [
 var Table = React.createClass({
   render: function() {
     var testcasesElems = this.props.testcases.map(function(testcase){
-      console.log(testcase)
       var body;
       if (testcase.disabled){
         body = (<td><strike> {testcase.text} </strike></td>)
@@ -95,7 +94,6 @@ var Result = React.createClass({
     
     var enabledTextcases = testcases.filter(function(obj){return !obj.disabled})
     var text = enabledTextcases.map(function(obj){return obj.text}).join('\n');
-      //console.log(text)
 
     var data = new Blob([text], {type: 'text/csv'});
 

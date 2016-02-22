@@ -1,21 +1,27 @@
 var App = React.createClass({
   getInitialState: function() {
     return {
-      step: 0
+      step: 0,
+      //projAttributes:{}
     }
 
   },
   nextState: function(evt){
     evt.preventDefault();
-    this.setState({step: this.state.step + 1});
+    if (this.state.step == 0){
+      //console.log(evt)
+      //TODO: collect values and do ajax here
+      console.log(evt.target.githuburl.value)
+    }
+    this.setState({
+      step: this.state.step + 1,
+    });
   },
   render: function() {
-    console.log(this.state.step)
     if (this.state.step == 0) {
       return <Form nextState={this.nextState}/>
     }
     else if (this.state.step == 1){
-      console.log(Result)
       return <Result />
     }
     else {
