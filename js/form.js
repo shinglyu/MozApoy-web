@@ -1,11 +1,14 @@
 var Form = React.createClass({
   render: function() {
     return (
-      <form onSubmit={this.props.nextState}>
-        <label>GitHub URL</label>
-        <input type='text' />
-        <button type='submit'>Submit</button>
-      </form>
+      <div>
+        <p>Please provide us some information about your project, so we can create a customized test suite for you</p>
+        <form onSubmit={this.props.nextState}>
+          <label>GitHub URL</label>
+          <input type='text' placeholder="https://www.github.com/your_username/your_repo"/>
+          <button type='submit'>Submit</button>
+        </form>
+      </div>
     )
   }
 });

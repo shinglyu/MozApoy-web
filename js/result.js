@@ -63,6 +63,7 @@ var Result = React.createClass({
   render: function() {
     return (
       <div>
+        <p> You can use the slider to custmize the desired execution time.</p>
         <input type="range" min="30" max="120" step="30" defaultValue="60" 
                onChange={function(evt){this.setState({totalTime: evt.target.value})}.bind(this)}/>
         <label>Estimated Time: {this.state.totalTime} min</label>
