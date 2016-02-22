@@ -24,14 +24,23 @@ var mockTestCaseData = [
 var Table = React.createClass({
   render: function() {
     var testcasesElems = this.props.testcases.map(function(testcase){
+      console.log(testcase)
+      var body;
+      if (testcase.disabled){
+        body = (<td><strike> {testcase.text} </strike></td>)
+      }
+      else{
+        body = (<td> {testcase.text} </td>)
+      }
       return (
-        <tr>
+        <tr key={testcase.index}>
+          <td> <button onClick={function(){this.props.removeItem(testcase.index)}.bind(this)}>[x]</button></td>
           <td> {testcase.id}       </td>
-          <td> {testcase.text}     </td>
+          {body}
           <td> {testcase.priority} </td>
         </tr>
       )
-    });
+    }.bind(this));
 
     return (
       <table>
@@ -51,8 +60,30 @@ var Table = React.createClass({
 var Result = React.createClass({
   getInitialState: function(){
     return {
-      totalTime: 60
+      totalTime: 60,
+      testcases: []
     }
+  },
+  componentDidMount: function(){
+    this.loadTestcases();
+  },
+
+  loadTestcases: function(){
+    //TODO:ajax
+    var testcases = mockTestCaseData;
+    testcases = testcases.map(function(testcase, index){
+      testcase['index'] = index
+      return testcase
+    })
+    this.setState({testcases: testcases})
+
+  },
+
+  //TODO: change this to toggle
+  removeItem: function(idx) {
+    var newState = this.state.testcases;
+    newState[idx]['disabled'] = true;
+    this.setState(newState);
   },
 
   filterTestcaseByTotalTime: function(testcases, totalTime){
@@ -61,10 +92,12 @@ var Result = React.createClass({
   },
 
   generateCsvUrl: function(testcases) {
-      let text = testcases.map(obj => obj.text).join('\n');
+    
+    var enabledTextcases = testcases.filter(function(obj){return !obj.disabled})
+    var text = enabledTextcases.map(function(obj){return obj.text}).join('\n');
       //console.log(text)
 
-      let data = new Blob([text], {type: 'text/csv'});
+    var data = new Blob([text], {type: 'text/csv'});
 
           // If we are replacing a previously generated file we need to
       // manually revoke the object URL to avoid memory leaks.
@@ -80,7 +113,7 @@ var Result = React.createClass({
   },
 
   render: function() {
-    var shownTestcases = this.filterTestcaseByTotalTime(mockTestCaseData, this.state.totalTime);
+    var shownTestcases = this.filterTestcaseByTotalTime(this.state.testcases, this.state.totalTime);
     return (
       <div>
         <p> You can use the slider to custmize the desired execution time.</p>
@@ -89,7 +122,7 @@ var Result = React.createClass({
         <label>Estimated Time: {this.state.totalTime} min</label>
         <br />
         <a download="mozapoy_test_suite.csv" href={this.generateCsvUrl(shownTestcases)} >Download as Excel CSV</a>
-        <Table testcases={shownTestcases} />
+        <Table testcases={shownTestcases} removeItem={this.removeItem}/>
       </div>
     )
   }
